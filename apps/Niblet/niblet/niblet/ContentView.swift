@@ -10,10 +10,20 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            Text("niblet")
+                .font(.largeTitle)
+                .fontWeight(.bold)
+
+            Text("a tiny AI palette for your mac")
+                .font(.subheadline)
+                .foregroundColor(.secondary)
+
+            Divider()
+
+            Text("Next up: build the main app shell.")
+                .font(.headline)
+
+            Text("This window will eventually show History, Nibbles, and Settings.")
         }
         .padding()
     }
