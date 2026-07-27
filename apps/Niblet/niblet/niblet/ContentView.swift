@@ -1,38 +1,52 @@
-//
-//  ContentView.swift
-//  niblet
-//
-//  Created by Leonardo Siu on 6/26/26.
-//
-
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject private var appState: NibletAppState
+
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             Text("Niblet")
                 .font(.largeTitle)
                 .fontWeight(.semibold)
 
-            Text("Available Nibbles")
+            Text("A tiny AI palette for your Mac.")
                 .foregroundStyle(.secondary)
 
-            ForEach(NibbleAction.samples) { nibble in
-                VStack(alignment: .leading, spacing: 4) {
-                    Text(nibble.title)
-                        .fontWeight(.semibold)
+            Divider()
 
-                    Text(nibble.description)
-                        .foregroundStyle(.secondary)
+            Text("Current Input")
+                .font(.headline)
+
+            Text(appState.currentInputText)
+                .foregroundStyle(.secondary)
+
+            Divider()
+
+            Text("Available Nibbles")
+                .font(.headline)
+
+            ForEach(appState.availableNibbles) { nibble in
+                Button(nibble.title) {
+                    appState.selectNibble(nibble)
                 }
-                .padding(.vertical, 4)
+            }
+
+            if let selectedNibble = appState.selectedNibble {
+                Divider()
+
+                Text("Selected Nibble")
+                    .font(.headline)
+
+                Text(selectedNibble.title)
+                    .foregroundStyle(.secondary)
             }
         }
         .padding(32)
-        .frame(minWidth: 520, minHeight: 320)
+        .frame(minWidth: 520, minHeight: 420)
     }
 }
 
 #Preview {
     ContentView()
+        .environmentObject(NibletAppState())
 }
