@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct nibletApp: App {
+    @StateObject private var appState = NibletAppState()
+
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(appState)
         }
     }
 }
