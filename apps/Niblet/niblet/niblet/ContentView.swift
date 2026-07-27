@@ -9,23 +9,27 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Text("niblet")
+        VStack(alignment: .leading, spacing: 16) {
+            Text("Niblet")
                 .font(.largeTitle)
-                .fontWeight(.bold)
+                .fontWeight(.semibold)
 
-            Text("a tiny AI palette for your mac")
-                .font(.subheadline)
-                .foregroundColor(.secondary)
+            Text("Available Nibbles")
+                .foregroundStyle(.secondary)
 
-            Divider()
+            ForEach(NibbleAction.samples) { nibble in
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(nibble.title)
+                        .fontWeight(.semibold)
 
-            Text("Next up: build the main app shell.")
-                .font(.headline)
-
-            Text("This window will eventually show History, Nibbles, and Settings.")
+                    Text(nibble.description)
+                        .foregroundStyle(.secondary)
+                }
+                .padding(.vertical, 4)
+            }
         }
-        .padding()
+        .padding(32)
+        .frame(minWidth: 520, minHeight: 320)
     }
 }
 

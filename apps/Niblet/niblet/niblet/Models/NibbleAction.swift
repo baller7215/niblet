@@ -1,15 +1,42 @@
 import Foundation
 
+/// A reusable AI action template that users can invoke with their own input.
+///
+/// A `NibbleAction` is a pre-configured prompt template that defines what kind of AI task
+/// the user can perform (e.g., "Summarize Text", "Explain Code"). It's a blueprint or tool,
+/// not a record of usage.
+///
+/// **Relationships:**
+/// - Belongs to a `NibbleCategory` to group similar actions
+/// - Many `Crumb` objects reference a single `NibbleAction` (via `nibbleID`)
+/// - One `NibbleAction` instance can be used to create many different `Crumb` records
+/// - Static samples provide the built-in Nibbles available to all users
+///
+/// **Example Flow:**
+/// 1. User selects the "Summarize" NibbleAction
+/// 2. User provides input text
+/// 3. The promptTemplate is filled with the user's input
+/// 4. The AI processes it
+/// 5. A `Crumb` is created recording this interaction
 struct NibbleAction: Identifiable, Hashable, Codable {
-    // id - stable internal name like "summarize_text" or "extract_entities"
+    /// Stable internal identifier (e.g., "summarize", "explain-code")
+    /// Used to reference this action in Crumbs and persisted data
     let id: String
-    // title - human-readable name like "Summarize Text" or "Extract Entities"
+    
+    /// Human-readable display name (e.g., "Summarize", "Explain Code")
+    /// Shown in the UI for users to select this action
     let title: String
-    // description - human-readable description of what the action does
+    
+    /// Human-readable description of what this action does
+    /// Helps users understand what result to expect
     let description: String
-    // category - the category of the action, like "Reading" or "Writing"
+    
+    /// The category this action belongs to (Reading, Writing, Coding, etc.)
+    /// Used for organizing and filtering actions in the UI
     let category: NibbleCategory
-    // promptTemplate - the prompt template to use for this action, with placeholders for user input
+    
+    /// Template string containing the AI prompt
+    /// Uses {{input}} placeholder that gets replaced with the user's text
     let promptTemplate: String
 }
 
