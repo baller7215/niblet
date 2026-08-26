@@ -2,6 +2,7 @@ import SwiftUI
 
 struct NibblesView: View {
     @EnvironmentObject private var appState: NibletAppState
+    @Environment(\.openWindow) private var openWindow
 
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
@@ -30,6 +31,13 @@ struct NibblesView: View {
             }
 
             Spacer()
+
+
+            Button {
+                openWindow(id: "palette")
+            } label: {
+                Label("Open Palette", systemImage: "sparkles")
+            }
         }
         .padding(24)
     }
