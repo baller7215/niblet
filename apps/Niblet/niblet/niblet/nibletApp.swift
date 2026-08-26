@@ -13,7 +13,7 @@ struct nibletApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainWindowView()
                 .environmentObject(appState)
         }
     }
