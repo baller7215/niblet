@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct MainWindowView: View {
+    @Environment(\.openWindow) private var openWindow
     @State private var selectedSection: MainWindowSection? = .history
 
     var body: some View {

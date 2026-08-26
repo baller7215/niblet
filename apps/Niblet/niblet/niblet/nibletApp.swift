@@ -16,5 +16,12 @@ struct nibletApp: App {
             MainWindowView()
                 .environmentObject(appState)
         }
+
+        Window("Niblet Palette", id: "palette") {
+            PaletteWindowView()
+                .environmentObject(appState)
+        }
+        .defaultSize(width: 520, height: 420)
+        .windowResizability(.contentSize)
     }
 }
